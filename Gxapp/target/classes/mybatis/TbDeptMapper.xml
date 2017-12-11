@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.tensoft.gaoxiao.dao.TbDeptMapper" >
+
+<select id="get" resultType="org.tensoft.gaoxiao.model.TbDept">
+	select id,pid,simplename,fullname,version,tips from tb_dept where id=#{id}
+</select>
+
+
+</mapper>

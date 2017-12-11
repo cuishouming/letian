@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!--浏览器的兼容问题  -->
+<title>BMS</title>
+<meta name="description" content="" /><!-- description(网站内容描述) -->
+<meta name="keywords" content="index" /><!--Keywords(关键字)   -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="renderer" content="webkit" /><!-- 忽略页面中的数字识别为电话，忽略email识别 --><!-- 启用360浏览器的极速模式(webkit) -->
+<meta http-equiv="Cache-Control" content="no-siteapp" /><!--设置这个之后通过手机百度搜索打开网页时,百度会为你的网页进行转码  -->
+<meta name="apple-mobile-web-app-title" content="Amaze UI" /><!-- iOS 设备 begin content="标题"-->
+<link rel="icon" type="image/png" th:href="@{/ui/i/favicon.png}" />
+<link rel="apple-touch-icon-precomposed" th:href="@{/ui/i/app-icon72x72@2x.png}" />
+<link th:href="@{/bootstrap/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" th:href="@{/ui/css/amazeui.min.css}" />
+<link rel="stylesheet" th:href="@{/ui/css/app.css}" />
+<link th:href="@{/plugins/bootstrap-fileinput/css/fileinput.min.css}" rel="stylesheet" type="text/css"/>
+<link th:href="@{/plugins/dtGrid/dlshouwen.grid.min.css}" rel="stylesheet" type="text/css"/>
+ <script th:src="@{/jquery-1.12.4.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/ckeditor/ckeditor.js}"></script>
+
+</head>
+
+<body data-type="index">
+	<script th:src="@{/ui/js/theme.js}"></script>
+	<div class="am-g tpl-g">
+		<!-- 头部 -->
+		<header>
+			<!-- logo -->
+			<div class="am-fl tpl-header-logo">
+				<a href="javascript:;"><img th:src="@{/ui/img/logo.png}" alt="" /></a>
+			</div>
+				<!-- 侧边切换 -->
+				<div class="am-fl tpl-header-switch-button am-icon-list">
+					<span> </span>
+				</div>
+				<!-- 其它功能-->
+				<div class="am-fr tpl-header-navbar">
+					<ul>
+						<!-- 欢迎语 -->
+						<li class="am-text-sm tpl-header-navbar-welcome"><a
+							href="javascript:;">欢迎你, <span th:text="${user.userName}"></span>
+						</a></li>
+						<!-- 退出 -->
+						<li class="am-text-sm"><a href="/logout"> <span
+								class="am-icon-sign-out"></span> 退出
+						</a></li>
+					</ul>
+			</div>
+		</header>
+		</div>
+		<!-- 风格切换 -->
+		<div class="tpl-skiner">
+			<div class="tpl-skiner-toggle am-icon-cog"></div>
+			<div class="tpl-skiner-content">
+				<div class="tpl-skiner-content-title">选择主题</div>
+				<div class="tpl-skiner-content-bar">
+					<span class="skiner-color skiner-white" data-color="theme-white"></span>
+					<span class="skiner-color skiner-black" data-color="theme-black"></span>
+				</div>
+			</div>
+		</div>
+		<!-- 侧边导航栏 -->
+		<div class="left-sidebar">
+			<!-- 用户信息 -->
+			<div class="tpl-sidebar-user-panel">
+				<div class="tpl-user-panel-slide-toggleable">
+					<div class="tpl-user-panel-profile-picture">
+						<img th:src="${user.img}"  alt="" />
+					</div>
+					<span class="user-panel-logged-in-text" th:text="${user.userName}"> <i
+						class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+					</span> <a href="javascript:;" class="tpl-user-panel-action-link" th:onclick="'loadPage(\'/user/'+${user.id}+'/info\')'" > <span
+						class="am-icon-pencil"></span> 账号设置
+					</a>
+				</div>
+			</div> 
+			<ul class="sidebar-nav">
+				<li class="sidebar-nav-link"><a href="index.html" class="active" > <i class="am-icon-home sidebar-nav-link-logo"></i>首页</a></li>
+				<li class="sidebar-nav-link" th:each="menu:${menus}" >
+					<a href="javascript:;" class="sidebar-nav-sub-title" > <i class="sidebar-nav-link-logo" th:attrappend="class=' '+${menu.icon}"></i><nb th:text="${menu.name}"></nb>
+						<span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico" th:if="${#lists.size(menu.children)>0}"></span>
+					</a>
+					<ul class="sidebar-nav sidebar-nav-sub" th:if="${#lists.size(menu.children)>0}">
+						<li class="sidebar-nav-link" th:each="child:${menu.children}"><a th:onclick="'menuLoad(\''+${child.sourceUrl}+'\',this)'"> <span class="am-icon-angle-right sidebar-nav-link-logo"></span> <nb th:text="${child.name}"></nb></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+
+		<!-- 内容区域 -->
+		<div class="tpl-content-wrapper">
+
+			<div class="container-fluid am-cf">
+				   <div class="am-tabs-bd">
+				    <div class="am-tab-panel am-active">
+				      <div class="row">
+							<div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+								<div class="page-header-heading">
+									<span class="am-icon-home page-header-heading-icon"></span> 部件首页
+									<small>Amaze UI</small>
+								</div>
+								<p class="page-header-description">Amaze UI 含近 20 个 CSS 组件、20
+									余 JS 组件，更有多个包含不同主题的 Web 组件。</p>
+							</div>
+						</div>
+				    </div>
+				  </div> 
+			</div>
+		</div>
+		
+	
+	<script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap-table.js}"></script>
+	<script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap-table-zh-CN.min.js}"></script>	
+	
+	<script th:src="@{/plugins/dtGrid/dlshouwen.grid.treegrid.js}"></script>
+	<script th:src="@{/plugins/dtGrid/i18n/zh-cn.js}"></script>
+	<script th:src="@{/plugins/layer-v2.3/layer.js}"></script>	
+	<script type="text/javascript" th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
+	<script type="text/javascript" th:src="@{/plugins/jquery-validation/localization/messages_zh.js}"></script>
+	<script type="text/javascript" th:src="@{/plugins/bootstrap-fileinput/js/fileinput.js}"></script>
+	<script th:src="@{/ui/js/app.js}"></script>
+	<script th:inline="javascript"> var contextRoot = /*[[@{/}]]*/ ''; </script>
+</body>
+
+</html>

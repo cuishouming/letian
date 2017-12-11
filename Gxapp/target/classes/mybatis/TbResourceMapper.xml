@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.tensoft.gaoxiao.dao.TbResourceMapper" >
+	<resultMap id="BaseResultMap" type="org.tensoft.gaoxiao.model.TbResource">
+		<id column="s_id" property="id" />
+		<result column="s_parent_id" property="parentId" />
+		<result column="s_name" property="name" />
+		<result column="s_source_key" property="sourceKey" />
+		<result column="s_type" property="type" />
+		<result column="s_source_url" property="sourceUrl" />
+		<result column="s_icon" property="icon" />
+		<result column="s_is_hide" property="isHide" />
+		<result column="s_description" property="description" />
+		<result column="s_create_time" property="createTime" />
+		<result column="s_update_time" property="updateTime" />
+		<result column="s_selected" property="selected" />
+		<result column="s_parent_name" property="parentName" />
+	</resultMap>
+
+
+	<select id="getAll" resultMap="BaseResultMap" >
+		select * from tb_resource
+	</select>
+
+	<select id="findResourcesByUserId" parameterType="int" resultMap="BaseResultMap" >
+		SELECT s.* FROM tb_resource s, tb_resources_role sr, tb_role r, tb_role_user ru
+		WHERE s.s_id = sr.s_id AND sr.r_id = r.r_id AND r.r_id = ru.r_id AND ru.u_id=#{uId}
+	</select>
+	
+	<select id="findResourcesMenuByUserId" parameterType="int" resultMap="BaseResultMap">
+		SELECT s.* FROM tb_resource s, tb_resources_role sr, tb_role r, tb_role_user ru
+		WHERE s.s_id = sr.s_id AND sr.r_id = r.r_id AND r.r_id = ru.r_id AND s.s_parent_id =0 AND  ru.u_id=#{uId}
+	</select>
+
+	<select id="getChildMeunsByParid" parameterType="int" resultMap="BaseResultMap">
+		SELECT s.* FROM tb_resource s where s.s_parent_id =#{uId}
+	</select>
+	
+
+</mapper>
