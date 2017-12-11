@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.tensoft.gaoxiao.dao.TbRoleMapper" >
+<mapper namespace="org.tensoft.gaoxiao.dao.TbRoleMapper">
 
+	<sql id="Base_Column_List">
+		r_id,r_name,r_key,r_status,r_description,r_dept_id,r_update_time
+	</sql>
+	<select id="getAll" resultType="org.tensoft.gaoxiao.model.TbRole">
+		select
+		r_id as id,r_name as  rolename,r_key as rolekey,r_status as rolestatus,r_description as 
+		description,r_dept_id as deptId,r_update_time as updateTime
+		from tb_role
+		where r_status= 0 order by updateTime desc
+	</select>
 </mapper>

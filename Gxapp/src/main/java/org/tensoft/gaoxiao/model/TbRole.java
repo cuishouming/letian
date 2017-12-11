@@ -29,15 +29,15 @@ public class TbRole implements Serializable{
 	/**
 	 * 角色名称
 	 */
-	private String name;
+	private String rolename;
 	/**
 	 * 角色key
 	 */
-	private String key;
+	private String rolekey;
 	/**
 	 * 角色状态,0：正常；1：删除
 	 */
-	private Integer status;
+	private Integer rolestatus;
 	/**
 	 * 角色描述
 	 */
@@ -67,28 +67,32 @@ public class TbRole implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getRolename() {
+		return rolename;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
 	}
 
-	public String getKey() {
-		return key;
+
+	public String getRolekey() {
+		return rolekey;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setRolekey(String rolekey) {
+		this.rolekey = rolekey;
 	}
 
-	public Integer getStatus() {
-		return status;
+	
+
+	public Integer getRolestatus() {
+		return rolestatus;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setRolestatus(Integer rolestatus) {
+		this.rolestatus = rolestatus;
 	}
 
 	public String getDescription() {

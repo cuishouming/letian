@@ -19,9 +19,9 @@
 		<result column="u_img" property="img" />
  		<association property="role" column="id" javaType="org.tensoft.gaoxiao.model.TbRole">
 			<id property="id" column="r_id"/>
-			<result property="name" column="r_name"/>
-			<result property="key" column="r_key"/>
-			<result property="status" column="r_status"/>
+			<result property="rolename" column="r_name"/>
+			<result property="rolekey" column="r_key"/>
+			<result property="rolestatus" column="r_status"/>
 			<result property="description" column="r_description"/>
 			<result property="createTime" column="r_create_time"/>
 			<result property="updateTime" column="r_update_time"/>

@@ -4,7 +4,7 @@
         });
         var $table = $("#table1");
         $table.bootstrapTable({
-            url: "user/listss?rad="+new Date().getTime(),
+            url: "user/list?rad="+new Date().getTime(),
             columns: tableColumns(),
             method: 'get',                      //请求方式（*）
            // toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -47,7 +47,7 @@ function tableColumns(){
 	    align: 'center',
 	    valign: 'middle'
 	},{
-		field : 'role.name',
+		field : 'role.rolename',
 	    title : '角色',
 	    width: "200px",
 	    align: 'center',
