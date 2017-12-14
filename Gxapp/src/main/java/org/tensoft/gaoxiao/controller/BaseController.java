@@ -1,49 +1,22 @@
-package org.tensoft.gaoxiao.vo;
+package org.tensoft.gaoxiao.controller;
 
 import java.util.Map;
 
-public class AjaxResult {
-    public static final int STATUS_CODE_OK = 200;
-    public static final int STATUS_CODE_ERROE = 300;
-    private int statusCode;
-    private String message;
-    
-    private Object data;
-    
-    private Map<String, Object> map;
+import org.apache.shiro.SecurityUtils;
+import org.tensoft.gaoxiao.model.TbUser;
+import org.tensoft.gaoxiao.vo.AjaxResult;
 
-	public int getStatusCode() {
-		return statusCode;
+public abstract class BaseController {
+	
+	/**
+	 * 获取登录用户信息
+	 * @return
+	 */
+	public TbUser getUserEntity() {
+		return (TbUser)SecurityUtils.getSubject().getPrincipal();
 	}
-
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public Object getData() {
-		return data;
-	}
-
-	public void setData(Object data) {
-		this.data = data;
-	}
-
-	public Map<String, Object> getMap() {
-		return map;
-	}
-
-	public void setMap(Map<String, Object> map) {
-		this.map = map;
-	}
-    
+	
+	
 	/**
 	 * 成功,返回状态
 	 * @param <T>
@@ -81,5 +54,6 @@ public class AjaxResult {
 		result.setMessage("操作失败");
 		return result;
 	}
-   
+	
+	
 }

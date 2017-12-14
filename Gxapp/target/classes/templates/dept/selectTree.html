@@ -1,0 +1,53 @@
+<link rel="stylesheet"
+	th:href="@{/plugins/ztree/css/zTreeStyle/zTreeStyle.css}" />
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<ul id="selectTree" class="ztree"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script th:src="@{/ui/js/jquery.min.js}"></script>
+<script th:src="@{/plugins/ztree/jquery.ztree.all.min.js}"></script>
+<script type="text/javascript">
+	var setting = {
+		view : {
+			dblClickExpand : false //双击节点时，是否自动展开父节点的标识
+		},
+		data : {
+			simpleData : {
+				enable : true,
+				pIdKey : "pid",//节点数据中保存其父节点唯一标识的属性名称。[setting.data.simpleData.enable = true 时生效]
+			}
+		},
+		callback : {
+			onClick : onClick
+		}
+	};
+	var zTree;
+	/**
+	init zTree 初始化方法，
+	第一个参数    用于展现 zTree 的 DOM 容器
+	第二个参数  zTree 的配置数据
+	第三个参数 zNodesArray(JSON) / JSONzTree 的节点数据
+	**/
+	$.get("/dept/listTree", function(r){
+		zTree = $.fn.zTree.init($(".ztree"), setting, r.data); 
+		zTree.expandAll(true); // true 表示 展开 全部节点     false 表示 折叠 全部节点
+	});
+	
+	function onClick(e, treeId, treeNode) {
+	/// parent.$("#pname") 父页面 上$("#pname") 赋值
+		parent.$("#deptName").val(treeNode.name );
+        parent.$("#pid").val(treeNode.id);
+        
+         //下面是   -----------------------------如何关闭弹出的子页面窗口------------------------------------
+        
+        //先得到当前iframe层的索引
+        var index = parent.layer.getFrameIndex(window.name);  ////获取窗口索引
+        //再执行关闭
+        parent.layer.close(index);
+	}
+</script>

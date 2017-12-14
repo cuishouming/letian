@@ -6,5 +6,8 @@
 	select id,pid,simplename,fullname,version,tips from tb_dept where id=#{id}
 </select>
 
+<select id="getAll" resultType="org.tensoft.gaoxiao.model.TbDept">
+	select id,pid,simplename as name,fullname from tb_dept
+</select>
 
 </mapper>

@@ -60,3 +60,7 @@ function tableColumns(){
 	    valign: 'middle'}
 	]]
  }
+$(function (){
+	$('select').selected();
+	
+})

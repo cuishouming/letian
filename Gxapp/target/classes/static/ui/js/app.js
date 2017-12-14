@@ -290,13 +290,13 @@ function initDeptTree(setting){
 		zTree.expandAll(true);
 	});
 }
-
+// 点击 menuBtn 的事件
 function openDeptTree(){
 	   $("#menuBtn").click(function(){
 	    	 iconLayer = layer.open({
 		            type : 2,
 		            scrollbar: false,
-		            content : 'dept/toSelectTree',
+		            content : 'adx/dept/selectTree',
 		            area :  ['400px','500px'],
 		            maxmin : true,
 		            shift : 4,
