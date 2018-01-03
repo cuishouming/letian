@@ -109,6 +109,9 @@
 					maxlength : 6,
 					equalTo : "#password"
 				},
+				userName:{
+					required : true,
+				},
 				role : {
 					required : true
 				},
@@ -133,6 +136,9 @@
 					maxlength : "确认密码长度不能超过6位",
 					equalTo : "确认密码和密码不相同"
 				},
+				userName:{
+					required:"请输入姓名"
+				},
 				role : {
 					required : "请选择角色信息"
 				},
@@ -141,6 +147,8 @@
 					maxlength : "最大长度不能超过100位"
 				}
 			},
+			/* 
+			 //错误提示的样式
 			errorElement : "em",
 			errorPlacement : function(error, element) {
 				// Add the `help-block` class to the error element
@@ -169,7 +177,7 @@
 				} else {
 					$(element).parent(".col-md-5").addClass("has-success").removeClass("has-error");
 				}
-			},
+			}, */
 			submitHandler : function(form) {
 				commit('userForm', 'user/save', 'user/listUI');
 			}
