@@ -6,6 +6,7 @@ import org.apache.shiro.SecurityUtils;
 import org.tensoft.gaoxiao.model.TbUser;
 import org.tensoft.gaoxiao.vo.AjaxResult;
 
+
 public abstract class BaseController {
 	
 	/**
@@ -55,5 +56,9 @@ public abstract class BaseController {
 		return result;
 	}
 	
-	
+	public AjaxResult add(String keys,Object values){
+		AjaxResult result = new AjaxResult();
+		result.getMap().put(keys, values);
+		return result;
+	}
 }

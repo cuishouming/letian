@@ -101,7 +101,7 @@ $('.sidebar-nav-sub-title').on('click', function() {
         .find('.sidebar-nav-sub-ico').toggleClass('sidebar-nav-sub-ico-rotate');
 })
 
-//加载数据 数据的回显  load
+//加载数据 数据的回显  load  data是内容区域内的html源码 status是sucess 等
 function loadPage(url){
 	$(".tpl-content-wrapper").load(url,function(data,status,xhr){
 		if(xhr.getResponseHeader('sessionstatus') == 'timeout'){  //session 超时

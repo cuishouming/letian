@@ -3,6 +3,10 @@ package org.tensoft.gaoxiao.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 
 
 /**
@@ -16,13 +20,7 @@ import java.util.Date;
 public class TbUser implements Serializable{
 
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2551921988221106775L;
-	/**
-	 * 
-	 */
 	
 	/**
 	 * 用户id
@@ -35,6 +33,9 @@ public class TbUser implements Serializable{
 	/**
 	 * 账户名称
 	 */
+	//@NotBlank(message = "用户名不能为空") 
+	@Pattern(regexp="(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})"
+    		,message="用户名必须是2-5位中文或者6-16位英文和数字的组合")
 	private String accountName;
 	/**
 	 * 用户密码
@@ -59,6 +60,7 @@ public class TbUser implements Serializable{
 	/**
 	 * 创建者
 	 */
+	@NotBlank(message = "用户名不能为空") 
 	private String creatorName;
 	/**
 	 * 创建时间
@@ -74,8 +76,9 @@ public class TbUser implements Serializable{
 	
 	private String deptName;
 	
+	private String roleId;
 	private TbRole role;
-	
+
 	private TbDept dept;
 	
 	private String email;
@@ -94,6 +97,26 @@ public class TbUser implements Serializable{
 
 	public String getUserName() {
 		return userName;
+	}
+
+	
+	public TbRole getRole() {
+		return role;
+	}
+
+
+	public void setRole(TbRole role) {
+		this.role = role;
+	}
+
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 
 
@@ -191,14 +214,7 @@ public class TbUser implements Serializable{
 		this.updateTime = updateTime;
 	}
 	
-	public TbRole getRole() {
-		return role;
-	}
-
-
-	public void setRole(TbRole role) {
-		this.role = role;
-	}
+	
 
 
 	public TbUser(String accountName) {

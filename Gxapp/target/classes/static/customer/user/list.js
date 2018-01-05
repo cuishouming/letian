@@ -61,6 +61,6 @@ function tableColumns(){
 	]]
  }
 $(function (){
-	$('select').selected();
+	//$('select').selected();
 	
 })

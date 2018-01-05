@@ -57,9 +57,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="role" class="col-sm-2 control-label">所属角色 Role</label>
+					<label for="roleId" class="col-sm-2 control-label">所属角色 Role</label>
 					<div class="col-sm-8">
-						<select id="role" class="form-control" name="role">
+						<select id="roleId" class="form-control" name="roleId">
 							<option th:each="role : ${roles}" th:value="${role.id}"
 								th:text="${role.rolename}"></option>
 						</select>
@@ -98,7 +98,7 @@
 				},
 				accountName : {
 					required : true,
-				//remote:"user/checkAccount"
+					remote:"user/checkAccount"
 				},
 				password : {
 					required : true,
@@ -126,6 +126,7 @@
 				},
 				accountName : {
 					required : "请输入添加的账户信息",
+					remote:"用户名已存在"
 				},
 				password : {
 					required : "请输入密码",
@@ -147,39 +148,8 @@
 					maxlength : "最大长度不能超过100位"
 				}
 			},
-			/* 
-			 //错误提示的样式
-			errorElement : "em",
-			errorPlacement : function(error, element) {
-				// Add the `help-block` class to the error element
-				error.addClass("help-block");
-				error.css("font-size", "18px");
-				if (element.prop("type") === "checkbox") {
-					error.insertAfter(element.parent("label"));
-				} else {
-					error.insertAfter(element);
-				}
-			},
-			highlight : function(element, errorClass, validClass) {
-				var md9 = $(element).parent(".col-md-9");
-				if (md9.length > 0) {
-					md9.addClass("has-error").removeClass("has-success");
-				} else {
-					$(element).parent(".col-md-5").addClass("has-error").removeClass("has-success");
-					;
-				}
-
-			},
-			unhighlight : function(element, errorClass, validClass) {
-				var md9 = $(element).parent(".col-md-9");
-				if (md9.length > 0) {
-					md9.addClass("has-success").removeClass("has-error");
-				} else {
-					$(element).parent(".col-md-5").addClass("has-success").removeClass("has-error");
-				}
-			}, */
 			submitHandler : function(form) {
-				commit('userForm', 'user/save', 'user/listUI');
+				commit('userForm', 'user/saveOrupdate', 'user/listUI');
 			}
 		})
 	}
