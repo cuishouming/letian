@@ -3,6 +3,8 @@ package org.tensoft.gaoxiao.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -22,222 +24,152 @@ public class TbUser implements Serializable{
 
 	private static final long serialVersionUID = 2551921988221106775L;
 	
-	/**
-	 * 用户id
-	 */
-	private Integer id;
-	/**
-	 * 真实姓名
-	 */
-	private String userName;
-	/**
-	 * 账户名称
-	 */
-	//@NotBlank(message = "用户名不能为空") 
-	@Pattern(regexp="(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})"
-    		,message="用户名必须是2-5位中文或者6-16位英文和数字的组合")
-	private String accountName;
-	/**
-	 * 用户密码
-	 */
-	private String password;
-	/**
-	 * 逻辑删除状态
-	 */
-	private Integer deleteStatus;
-	/**
-	 * 是否锁定
-	 */
-	private Integer locked;
-	/**
-	 * 用户描述
-	 */
-	private String description;
-	/**
-	 * 加密盐
-	 */
-	private String credentialsSalt;
-	/**
-	 * 创建者
-	 */
-	@NotBlank(message = "用户名不能为空") 
-	private String creatorName;
-	/**
-	 * 创建时间
-	 */
-	private Date createTime;
-	/**
-	 * 更新时间
-	 */
-	private Date updateTime;
-	
-	
-	private Integer deptId;
+	private Integer uId;
+
+    private String uName;
+
+    private String uAccountName;
+
+    private String uPassword;
+
+    private Integer uDeleteStatus;
+
+    private Integer uLocked;
+
+    private String uDescription;
+
+    private String uCredentialsSalt;
+
+    private String uCreatorName;
+
+    private Date uCreateTime;
+
+    private Date uUpdateTime;
+
+    private Integer uDeptId;
+
+    private String uImg;
+
+    private String uEmail;
+    
 	
 	private String deptName;
 	
-	private String roleId;
+	private Integer roleId;
 	private TbRole role;
 
 	private TbDept dept;
-	
-	private String email;
-	
-	private String img;
 
-
-	public Integer getId() {
-		return id;
+	public Integer getuId() {
+		return uId;
 	}
 
-
-	public void setId(Integer id) {
-		this.id = id;
+	public void setuId(Integer uId) {
+		this.uId = uId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getuName() {
+		return uName;
 	}
 
-	
-	public TbRole getRole() {
-		return role;
+	public void setuName(String uName) {
+		this.uName = uName;
 	}
 
-
-	public void setRole(TbRole role) {
-		this.role = role;
+	public String getuAccountName() {
+		return uAccountName;
 	}
 
-
-	public String getRoleId() {
-		return roleId;
+	public void setuAccountName(String uAccountName) {
+		this.uAccountName = uAccountName;
 	}
 
-
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
+	public String getuPassword() {
+		return uPassword;
 	}
 
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setuPassword(String uPassword) {
+		this.uPassword = uPassword;
 	}
 
-
-	public String getAccountName() {
-		return accountName;
+	public Integer getuDeleteStatus() {
+		return uDeleteStatus;
 	}
 
-
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setuDeleteStatus(Integer uDeleteStatus) {
+		this.uDeleteStatus = uDeleteStatus;
 	}
 
-
-	public String getPassword() {
-		return password;
+	public Integer getuLocked() {
+		return uLocked;
 	}
 
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setuLocked(Integer uLocked) {
+		this.uLocked = uLocked;
 	}
 
-
-	public Integer getDeleteStatus() {
-		return deleteStatus;
+	public String getuDescription() {
+		return uDescription;
 	}
 
-
-	public void setDeleteStatus(Integer deleteStatus) {
-		this.deleteStatus = deleteStatus;
+	public void setuDescription(String uDescription) {
+		this.uDescription = uDescription;
 	}
 
-
-	public Integer getLocked() {
-		return locked;
+	public String getuCredentialsSalt() {
+		return uCredentialsSalt;
 	}
 
-
-	public void setLocked(Integer locked) {
-		this.locked = locked;
+	public void setuCredentialsSalt(String uCredentialsSalt) {
+		this.uCredentialsSalt = uCredentialsSalt;
 	}
 
-
-	public String getDescription() {
-		return description;
+	public String getuCreatorName() {
+		return uCreatorName;
 	}
 
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setuCreatorName(String uCreatorName) {
+		this.uCreatorName = uCreatorName;
 	}
 
-
-	public String getCredentialsSalt() {
-		return credentialsSalt;
+	public Date getuCreateTime() {
+		return uCreateTime;
 	}
 
-
-	public void setCredentialsSalt(String credentialsSalt) {
-		this.credentialsSalt = credentialsSalt;
+	public void setuCreateTime(Date uCreateTime) {
+		this.uCreateTime = uCreateTime;
 	}
 
-
-	public String getCreatorName() {
-		return creatorName;
+	public Date getuUpdateTime() {
+		return uUpdateTime;
 	}
 
-
-	public void setCreatorName(String creatorName) {
-		this.creatorName = creatorName;
+	public void setuUpdateTime(Date uUpdateTime) {
+		this.uUpdateTime = uUpdateTime;
 	}
 
-
-	public Date getCreateTime() {
-		return createTime;
+	public Integer getuDeptId() {
+		return uDeptId;
 	}
 
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setuDeptId(Integer uDeptId) {
+		this.uDeptId = uDeptId;
 	}
 
-
-	public Date getUpdateTime() {
-		return updateTime;
+	public String getuImg() {
+		return uImg;
 	}
 
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-	
-	
-
-
-	public TbUser(String accountName) {
-		super();
-		this.accountName = accountName;
+	public void setuImg(String uImg) {
+		this.uImg = uImg;
 	}
 
-	public Integer getDeptId() {
-		return deptId;
+	public String getuEmail() {
+		return uEmail;
 	}
 
-
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
-	}
-	
-	public TbDept getDept() {
-		return dept;
-	}
-
-
-	public void setDept(TbDept dept) {
-		this.dept = dept;
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
 	}
 
 	public String getDeptName() {
@@ -248,29 +180,30 @@ public class TbUser implements Serializable{
 		this.deptName = deptName;
 	}
 
-	public TbUser() {
-		super();
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public String getEmail() {
-		return email;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
-
-	public void setEmail(String email) {
-		this.email = email;
+	public TbRole getRole() {
+		return role;
 	}
 
-
-	public String getImg() {
-		return img;
+	public void setRole(TbRole role) {
+		this.role = role;
 	}
 
-
-	public void setImg(String img) {
-		this.img = img;
+	public TbDept getDept() {
+		return dept;
 	}
 
-
-
+	public void setDept(TbDept dept) {
+		this.dept = dept;
+	}
+	
+	
+	
 }

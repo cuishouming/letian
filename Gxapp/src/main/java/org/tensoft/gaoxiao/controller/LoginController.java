@@ -16,8 +16,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.tensoft.gaoxiao.model.TbResource;
@@ -41,13 +39,13 @@ public class LoginController {
 		
 		if (request.getMethod().equals(HttpMethod.POST.toString())) {
 			String msg = "";
-			String username = request.getParameter("username");
+			String uAccountName = request.getParameter("AccountName");
             String password = request.getParameter("password");
             String rememberMe = request.getParameter("rememberMe");
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+            UsernamePasswordToken token = new UsernamePasswordToken(uAccountName, password);
     		token.setRememberMe(rememberMe==null?false:true);
             Subject subject = SecurityUtils.getSubject();
-            subject.getSession().setAttribute("account", username);
+            subject.getSession().setAttribute("account", uAccountName);
             try{
             	subject.login(token); //开始登录验证
             	subject.getSession().removeAttribute("msg");
@@ -77,7 +75,7 @@ public class LoginController {
 	public String index(Map<String, Object> map) {
 		TbUser userEntity = (TbUser)SecurityUtils.getSubject().getPrincipal(); //返回当前的用户
 		//判断登录用户的权限资源
-		List<TbResource> treeMenuList = resourceService.findResourcesMenuByUserId(userEntity.getId());
+		List<TbResource> treeMenuList = resourceService.findResourcesMenuByUserId(userEntity.getuId());
 		if (treeMenuList.size()>0) {
 			List<TbResource> childMenu = new ArrayList<TbResource>();  //子类菜单
 			for (TbResource menu : treeMenuList) {

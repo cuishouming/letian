@@ -3,20 +3,20 @@
 <mapper namespace="org.tensoft.gaoxiao.dao.TbUserMapper">
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="org.tensoft.gaoxiao.model.TbUser">
-		<id column="u_id" property="id" />
-		<result column="u_name" property="userName" />
-		<result column="u_account_name" property="accountName" />
-		<result column="u_password" property="password" />
-		<result column="u_delete_status" property="deleteStatus" />
-		<result column="u_locked" property="locked" />
-		<result column="u_description" property="description" />
-		<result column="u_credentials_salt" property="credentialsSalt" />
-		<result column="u_creator_name" property="creatorName" />
-		<result column="u_create_time" property="createTime" />
-		<result column="u_update_time" property="updateTime" />
-		<result column="u_dept_id" property="deptId" />
-		<result column="deptName" property="deptName" />
-		<result column="u_img" property="img" />
+		<id column="u_id" property="uId" />
+		<result column="u_name" property="uName" />
+		<result column="u_account_name" property="uAccountName" />
+		<result column="u_password" property="uPassword" />
+		<result column="u_delete_status" property="uDeleteStatus" />
+		<result column="u_locked" property="uLocked" />
+		<result column="u_description" property="uDescription" />
+		<result column="u_credentials_salt" property="uCredentialsSalt" />
+		<result column="u_creator_name" property="uCreatorName" />
+		<result column="u_create_time" property="uCreateTime" />
+		<result column="u_update_time" property="uUpdateTime" />
+		<result column="u_dept_id" property="uDeptId" />
+		<result column="deptName" property="uImg" />
+		<result column="u_img" property="uImg" />
 		<association property="role" column="id"
 			javaType="org.tensoft.gaoxiao.model.TbRole">
 			<id property="id" column="r_id" />
@@ -53,37 +53,104 @@
 		FROM tb_user u LEFT JOIN tb_role_user ru ON
 		u.u_id = ru.u_id LEFT JOIN tb_role r ON ru.r_id = r.r_id
 		<where>
-			<if test="userId != null and userId != ''">
-				u.u_id=#{userId}
+			<if test="uId != null and uId != ''">
+				u.u_id=#{uId}
 			</if>
-			<if test="accountName != null and accountName != ''">
-				u.u_account_name=#{accountName}
+			<if test="uAccountName != null and uAccountName != ''">
+				u.u_account_name=#{uAccountName}
 			</if>
 		</where>
 	</select>
 
-	<insert id="add" parameterType="org.tensoft.gaoxiao.model.TbUser">
+	<insert id="add" parameterType="org.tensoft.gaoxiao.model.TbUser"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into tb_user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="accountName!=null">
+			<if test="uId != null">
+				u_id,
+			</if>
+			<if test="uName != null">
+				u_name,
+			</if>
+			<if test="uAccountName != null">
 				u_account_name,
 			</if>
-			<if test="password!=null">
+			<if test="uPassword != null">
 				u_password,
 			</if>
-			<if test="userName!=null">
-				u_name,
+			<if test="uDeleteStatus != null">
+				u_delete_status,
+			</if>
+			<if test="uLocked != null">
+				u_locked,
+			</if>
+			<if test="uDescription != null">
+				u_description,
+			</if>
+			<if test="uCredentialsSalt != null">
+				u_credentials_salt,
+			</if>
+			<if test="uCreatorName != null">
+				u_creator_name,
+			</if>
+			<if test="uCreateTime != null">
+				u_create_time,
+			</if>
+			<if test="uUpdateTime != null">
+				u_update_time,
+			</if>
+			<if test="uDeptId != null">
+				u_dept_id,
+			</if>
+			<if test="uImg != null">
+				u_img,
+			</if>
+			<if test="uEmail != null">
+				u_email,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="accountName != null">
-				#{accountName,jdbcType=INTEGER},
+			<if test="uId != null">
+				#{uId,jdbcType=INTEGER},
 			</if>
-			<if test="password != null">
-				#{password,jdbcType=VARCHAR},
+			<if test="uName != null">
+				#{uName,jdbcType=VARCHAR},
 			</if>
-			<if test="userName != null">
-				#{userName,jdbcType=VARCHAR},
+			<if test="uAccountName != null">
+				#{uAccountName,jdbcType=VARCHAR},
+			</if>
+			<if test="uPassword != null">
+				#{uPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="uDeleteStatus != null">
+				#{uDeleteStatus,jdbcType=INTEGER},
+			</if>
+			<if test="uLocked != null">
+				#{uLocked,jdbcType=INTEGER},
+			</if>
+			<if test="uDescription != null">
+				#{uDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="uCredentialsSalt != null">
+				#{uCredentialsSalt,jdbcType=VARCHAR},
+			</if>
+			<if test="uCreatorName != null">
+				#{uCreatorName,jdbcType=VARCHAR},
+			</if>
+			<if test="uCreateTime != null">
+				#{uCreateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uUpdateTime != null">
+				#{uUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uDeptId != null">
+				#{uDeptId,jdbcType=INTEGER},
+			</if>
+			<if test="uImg != null">
+				#{uImg,jdbcType=VARCHAR},
+			</if>
+			<if test="uEmail != null">
+				#{uEmail,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>

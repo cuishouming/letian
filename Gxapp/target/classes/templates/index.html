@@ -41,7 +41,7 @@
 					<ul>
 						<!-- 欢迎语 -->
 						<li class="am-text-sm tpl-header-navbar-welcome"><a
-							href="javascript:;">欢迎你, <span th:text="${user.userName}"></span>
+							href="javascript:;">欢迎你, <span th:text="${user.uName}"></span>
 						</a></li>
 						<!-- 退出 -->
 						<li class="am-text-sm"><a href="/logout"> <span
@@ -68,11 +68,11 @@
 			<div class="tpl-sidebar-user-panel">
 				<div class="tpl-user-panel-slide-toggleable">
 					<div class="tpl-user-panel-profile-picture">
-						<img th:src="${user.img}"  alt="" />
+						<img th:src="${user.uImg}"  alt="" />
 					</div>
-					<span class="user-panel-logged-in-text" th:text="${user.userName}"> <i
+					<span class="user-panel-logged-in-text" th:text="${user.uName}"> <i
 						class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-					</span> <a href="javascript:;" class="tpl-user-panel-action-link" th:onclick="'loadPage(\'/user/'+${user.id}+'/info\')'" > <span
+					</span> <a href="javascript:;" class="tpl-user-panel-action-link" th:onclick="'loadPage(\'/user/'+${user.uId}+'/info\')'" > <span
 						class="am-icon-pencil"></span> 账号设置
 					</a>
 				</div>

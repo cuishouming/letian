@@ -68,15 +68,15 @@ public class EndecryptUtils {
      * @param hashIterations 迭代次数 
      * @return UserEntity对象，包含密文和salt 
      */ 
-    public static TbUser md5Password(String username,String password,int hashIterations){ 
+    public static TbUser md5Password(String uAccountName,String password,int hashIterations){ 
         SecureRandomNumberGenerator secureRandomNumberGenerator=new SecureRandomNumberGenerator(); 
         String salt= secureRandomNumberGenerator.nextBytes().toHex(); 
         //组合username,两次迭代，对密码进行加密 
-        String password_cryto = new Md5Hash(password,username+salt,hashIterations).toString(); 
+        String password_cryto = new Md5Hash(password,uAccountName+salt,hashIterations).toString(); 
         TbUser user=new TbUser(); 
-        user.setPassword(password_cryto); 
-        user.setCredentialsSalt(salt); 
-        user.setUserName(username); 
+        user.setuPassword(password_cryto); 
+        user.setuCredentialsSalt(salt); 
+        user.setuName(uAccountName); 
         return user; 
     } 
     

@@ -89,20 +89,20 @@ public class TbUserController  extends BaseController{
 		@PostMapping("saveOrupdate")
 		@ResponseBody
 		public AjaxResult saveOrUpdateUser(TbUser user){
-			if (user.getId()==null) {
+			if (user.getuId()==null) {
 				// 加密用户输入的密码，得到密码和加密盐，保存到数据库
-				TbUser userEntity = EndecryptUtils.md5Password(user.getAccountName(), user.getPassword(), 2);
+				TbUser userEntity = EndecryptUtils.md5Password(user.getuAccountName(), user.getuPassword(), 2);
 				//设置添加用户的密码和加密盐
-				user.setPassword(userEntity.getPassword());
-				user.setCredentialsSalt(userEntity.getCredentialsSalt());
+				user.setuPassword(userEntity.getuPassword());
+				user.setuCredentialsSalt(userEntity.getuCredentialsSalt());
 				
 				//设置创建者姓名
-				user.setCreatorName(getUserEntity().getAccountName());
-				user.setCreateTime(new Date(System.currentTimeMillis()));
-				user.setUpdateTime(new Date(System.currentTimeMillis()));
+				user.setuCreatorName(getUserEntity().getuAccountName());
+				user.setuCreateTime(new Date(System.currentTimeMillis()));
+				user.setuUpdateTime(new Date(System.currentTimeMillis()));
 				//设置锁定状态：未锁定；删除状态：未删除
-				user.setLocked(0);
-				user.setDeleteStatus(0);
+				user.setuLocked(0);
+				user.setuDeleteStatus(0);
 				
 				Boolean result = tbUserService.instertAll(user);
 				if(!result){

@@ -56,9 +56,9 @@ public class MyShiroRealm extends AuthorizingRealm{
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		
 		//获取用户的输入的账号.
-	       String userName = (String)token.getPrincipal();
+	       String uAccountName = (String)token.getPrincipal();
 	      Map<String, Object> map = new HashMap<String, Object>(); 
-	      map.put("accountName", userName);
+	      map.put("accountName", uAccountName);
 	       //ConvertUtil.toMap 返回的是一个Map（accountName，用户名）
 	      // TbUser userInfo = userService.selectUser(ConvertUtil.toMap("accountName",(Object)userName));
 	      List<TbUser> userlist = userService.selectUser(map);
@@ -68,7 +68,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 	      }else{
 			userInfo = userlist.get(0);
 	      }
-	       if (userInfo.getLocked()==2) {
+	       if (userInfo.getuLocked()==2) {
 				throw new LockedAccountException(); // 帐号被锁定
 			}
 			// 从数据库查询出来的账号名和密码,与用户输入的账号和密码对比
@@ -77,14 +77,14 @@ public class MyShiroRealm extends AuthorizingRealm{
 			// 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得shiro自带的不好可以自定义实现
 	       SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
 	    		   userInfo, // 用户对象
-	    		   userInfo.getPassword(), // 密码
-				   ByteSource.Util.bytes(userName + userInfo.getCredentialsSalt()),// salt=username+salt
+	    		   userInfo.getuPassword(), // 密码
+				   ByteSource.Util.bytes(uAccountName + userInfo.getuCredentialsSalt()),// salt=username+salt
 				   getName() // realm name
 			);
 		    // 当验证都通过后，把用户信息放在session里
 			Session session = SecurityUtils.getSubject().getSession();
 			//com.baomidou.mybatisplus.service.impl selectById 根据 ID 查询 
-			userInfo.setDept(deptService.get(userInfo.getDeptId())); //组治信息
+			userInfo.setDept(deptService.get(userInfo.getuDeptId())); //组治信息
 			// 用户对象
 			session.setAttribute("userSession", userInfo);
 	       return authenticationInfo;
@@ -115,7 +115,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 	       TbUser user  = (TbUser)principals.getPrimaryPrincipal();
 	       if (user != null) {
 	    	   //根据用户信息 获取他的权限
-	    	   List<TbResource> resourceList = resourceService.findResourcesByUserId(user.getId());
+	    	   List<TbResource> resourceList = resourceService.findResourcesByUserId(user.getuId());
 	    	   SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 	    	   info.addRole(user.getRole().getRolename());
 	    	   for (TbResource resourceEntity : resourceList) {

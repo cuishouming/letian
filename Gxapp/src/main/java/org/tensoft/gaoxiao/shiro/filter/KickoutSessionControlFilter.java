@@ -77,7 +77,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
         Session session = subject.getSession();
         TbUser user = (TbUser) subject.getPrincipal();
-        String username = user.getAccountName();
+        String username = user.getuAccountName();
         Serializable sessionId = session.getId();
 
         //读取缓存   没有就存入

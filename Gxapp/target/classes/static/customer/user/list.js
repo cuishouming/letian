@@ -34,14 +34,14 @@
 function tableColumns(){
         return [[
    {
-	field : 'accountName',
+	field : 'uAccountName',
     title : '账户名',
     width: "200px",
     align: 'center',
     valign: 'middle'
    
    },{
-	   field : 'userName',
+	   field : 'uName',
 	    title : '姓名',
 	    width: "200px",
 	    align: 'center',
