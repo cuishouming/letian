@@ -29,6 +29,23 @@
 		</association>
 	</resultMap>
 
+<select id="get" resultMap="BaseResultMap">
+	 SELECT u.u_id,
+		u.u_name,
+		u.u_account_name,
+		u.u_password,
+		u.u_delete_status,
+		u.u_locked,
+		u.u_description,
+		u.u_credentials_salt,
+		u.u_creator_name,
+		u.u_create_time,
+		u.u_update_time,
+		u.u_dept_id
+		FROM tb_user u 
+		where u.u_id=#{uId}
+</select>
+
 	<select id="selectUser" resultMap="BaseResultMap" parameterType="map">
 		SELECT u.u_id,
 		u.u_name,
@@ -63,7 +80,7 @@
 	</select>
 
 	<insert id="add" parameterType="org.tensoft.gaoxiao.model.TbUser"
-		useGeneratedKeys="true" keyProperty="id">
+		useGeneratedKeys="true" keyProperty="uId">
 		insert into tb_user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="uId != null">

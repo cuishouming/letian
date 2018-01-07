@@ -101,7 +101,7 @@ $('.sidebar-nav-sub-title').on('click', function() {
         .find('.sidebar-nav-sub-ico').toggleClass('sidebar-nav-sub-ico-rotate');
 })
 
-//加载数据 数据的回显  load  data是内容区域内的html源码 status是sucess 等
+//加载数据 数据的回显  load  包含来自请求的结果数据 status是sucess 等
 function loadPage(url){
 	$(".tpl-content-wrapper").load(url,function(data,status,xhr){
 		if(xhr.getResponseHeader('sessionstatus') == 'timeout'){  //session 超时
@@ -160,7 +160,7 @@ function commit(formId, commitUrl, jumpUrl) {
         success : function(resultdata) {
         	console.log(resultdata);
             layer.close(index); //关闭加载的动画
-            if (resultdata.status=="0") {
+            if (resultdata.statusCode=="200") {
                 layer.msg(resultdata.message, {
                     icon : 1
                 });

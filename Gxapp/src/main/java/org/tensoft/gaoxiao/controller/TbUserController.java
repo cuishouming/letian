@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +27,10 @@ import org.tensoft.gaoxiao.vo.SearchModel;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.util.StringUtil;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/")
 public class TbUserController  extends BaseController{
 
 	@Autowired
@@ -41,14 +43,16 @@ public class TbUserController  extends BaseController{
 	 * @param searchModel 前台传过来的一些查询参数
 	 * @return
 	 */
-	 @RequestMapping("/list")
+	 @RequestMapping("list")
 	 @ResponseBody
 	 public BootstrapTableResult<TbUser> findUserList(SearchModel searchModel){
 		 BootstrapTableResult<TbUser> result = new BootstrapTableResult<TbUser>();
 		 try {
 			 Page<Object> pages = PageHelper.startPage(searchModel.getLimit(),searchModel.getOffset());
-			 Map<String, Object> map = new HashMap<String, Object>();
-			 map.put("accountName", searchModel.getS_name().trim());
+ 			 Map<String, Object> map = new HashMap<String, Object>();
+			 if(StringUtil.isNotEmpty(searchModel.getS_name())){
+				 map.put("uAccountName", searchModel.getS_name());
+			 }
 			 List<TbUser> list =  tbUserService.selectUser(map);
 			 result.setTotal(pages.getTotal());
 			 result.setRows(list);
@@ -62,7 +66,7 @@ public class TbUserController  extends BaseController{
 	  * 点击添加 的操作 需要把 所有的角色信息查询出来带过去
 	  * @return
 	  */
-	 @GetMapping("/form")
+	 @GetMapping("form")
 	 public String toUserForm(Model model){
 		 List<TbRole> roles = tbRoleService.getAll();
 		 model.addAttribute("roles", roles);
@@ -72,14 +76,14 @@ public class TbUserController  extends BaseController{
 	// 添加时 登录名称的验证 不可以重名
 		@GetMapping("checkAccount")
 		@ResponseBody
-	    public boolean checkAccount(@RequestParam(required=true) String accountName) {
+	    public boolean checkAccount(@RequestParam(required=true) String uAccountName) {
 			//先判断用户名是否是合法的表达式;
 			String regx = "(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})";
-			if(!accountName.matches(regx)){
+			if(!uAccountName.matches(regx)){
 				return false;
 			}
 			 Map<String, Object> map = new HashMap<String, Object>();
-			 map.put("accountName", accountName);
+			 map.put("uAccountName", uAccountName);
 			List<TbUser> userlist =tbUserService.selectUser(map);
 			if(userlist.size()>0){
 				return false;
@@ -109,9 +113,23 @@ public class TbUserController  extends BaseController{
 					return fail();
 				}
 			} else {
-
+					//xiugaishuju
 			}
 			return success();
 			
 		}
+		/**
+		 * 点击重置密码的操作
+		 * @param uId
+		 * @param map
+		 * @return
+		 */
+		@GetMapping("{uId}/toRestPassword")
+		public String toRepasw(@PathVariable(required=true) Integer uId,Map<String, Object> map){
+			TbUser tbUser = tbUserService.get(uId);
+			map.put("user", tbUser);
+			return "/user/rest";
+			
+		}
+		
 }

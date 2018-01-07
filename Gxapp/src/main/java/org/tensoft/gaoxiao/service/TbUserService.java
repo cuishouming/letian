@@ -21,6 +21,9 @@ public class TbUserService extends BaseService<TbUserMapper, TbUser>{
 	public List<TbUser> selectUser(Map<String,Object> map) {
 		return dao.selectUser(map);
 	}
+	
+	
+	
 	@Transactional
 	public boolean instertAll(TbUser user) {
 		if (dao.add(user)>0) {

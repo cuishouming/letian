@@ -25,19 +25,19 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="account" class="col-sm-2 control-label">账号
+					<label for="uAccountName" class="col-sm-2 control-label">账号
 						Account</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="accountName"
-							name="accountName" placeholder="AccountName">
+						<input type="text" class="form-control" id="uAccountName"
+							name="uAccountName" placeholder="AccountName">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="password" class="col-sm-2 control-label">密码
+					<label for="uPassword" class="col-sm-2 control-label">密码
 						PassWord</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" name="password"
-							id="password" placeholder="PassWord">
+						<input type="password" class="form-control" name="uPassword"
+							id="uPassword" placeholder="PassWord">
 					</div>
 				</div>
 				<div class="form-group">
@@ -66,10 +66,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="description" class="col-sm-2 control-label">用户描述
+					<label for="uDescription" class="col-sm-2 control-label">用户描述
 						Desc</label>
 					<div class="col-sm-8">
-						<input type="text" id="description" name="description"
+						<input type="text" id="uDescription" name="uDescription"
 							class="form-control" id="inputEmail3" placeholder="Desc">
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 						<button type="button"
 							onclick="javascript:$('#userForm').submit();"
 							class=" btn btn-primary">提交</button>
-						<button type="button" onclick="loadPage('user/listUI')"
+						<button type="button" onclick="loadPage('adx/user/list')"
 							class="btn btn-success ">返回</button>
 					</div>
 				</div>
@@ -96,18 +96,18 @@
 				deptName : {
 					required : true,
 				},
-				accountName : {
+				uAccountName : {
 					required : true,
 					remote:"user/checkAccount"
 				},
-				password : {
+				uPassword : {
 					required : true,
 					maxlength : 6
 				},
 				repassword : {
 					required : true,
 					maxlength : 6,
-					equalTo : "#password"
+					equalTo : "#uPassword"
 				},
 				uName:{
 					required : true,
@@ -115,7 +115,7 @@
 				role : {
 					required : true
 				},
-				description : {
+				uDescription : {
 					required : true,
 					maxlength : 100
 				}
@@ -124,11 +124,11 @@
 				deptName : {
 					required : "请选择所属部门信息",
 				},
-				accountName : {
+				uAccountName : {
 					required : "请输入添加的账户信息",
 					remote:"用户名已存在"
 				},
-				password : {
+				uPassword : {
 					required : "请输入密码",
 					maxlength : "密码长度不能超过6位"
 				},
@@ -143,13 +143,13 @@
 				role : {
 					required : "请选择角色信息"
 				},
-				description : {
+				uDescription : {
 					required : "请输入描述信息",
 					maxlength : "最大长度不能超过100位"
 				}
 			},
 			submitHandler : function(form) {
-				commit('userForm', 'user/saveOrupdate', 'user/listUI');
+				commit('userForm', 'user/saveOrupdate', 'adx/user/list');
 			}
 		})
 	}

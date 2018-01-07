@@ -9,4 +9,5 @@ import org.tensoft.gaoxiao.model.TbUser;
 public interface TbUserMapper extends CrudRepository< TbUser>{
 
 	public List<TbUser> selectUser(Map<String,Object> map);
+	
 }

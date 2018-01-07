@@ -1,4 +1,5 @@
- $(function () {
+ var $table = $("#table1");
+$(function () {
         $("#btn").on('click', function () {
             $table.bootstrapTable("refresh")
         });
@@ -6,7 +7,9 @@
         $table.bootstrapTable({
             url: "user/list?rad="+new Date().getTime(),
             columns: tableColumns(),
-            method: 'get',                      //请求方式（*）
+            method: 'get',
+            idField: "uId",
+            //请求方式（*）
            // toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -32,7 +35,10 @@
     }
 
 function tableColumns(){
-        return [[
+        return [[{
+            checkbox: true,
+            width: "30px",
+        },
    {
 	field : 'uAccountName',
     title : '账户名',
@@ -60,7 +66,15 @@ function tableColumns(){
 	    valign: 'middle'}
 	]]
  }
-$(function (){
-	//$('select').selected();
+function resetPassword(){
+	//获取选中的数据
+	var seledatas= $table.bootstrapTable('getSelections');  
+	if(seledatas.length==1){
+		   loadPage('user/'+seledatas[0].uId+'/toRestPassword');
+	}else{
+		 layer.msg("你没有选择行或选择了多行数据", {
+	            icon : 0
+	        });
+	}
 	
-})
+}
