@@ -171,4 +171,49 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="update" parameterType="org.tensoft.gaoxiao.model.TbUser" >
+    update tb_user
+    <set >
+      <if test="uName != null" >
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uAccountName != null" >
+        u_account_name = #{uAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null" >
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uDeleteStatus != null" >
+        u_delete_status = #{uDeleteStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uLocked != null" >
+        u_locked = #{uLocked,jdbcType=INTEGER},
+      </if>
+      <if test="uDescription != null" >
+        u_description = #{uDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="uCredentialsSalt != null" >
+        u_credentials_salt = #{uCredentialsSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreatorName != null" >
+        u_creator_name = #{uCreatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreateTime != null" >
+        u_create_time = #{uCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uUpdateTime != null" >
+        u_update_time = #{uUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uDeptId != null" >
+        u_dept_id = #{uDeptId,jdbcType=INTEGER},
+      </if>
+      <if test="uImg != null" >
+        u_img = #{uImg,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null" >
+        u_email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
 </mapper>

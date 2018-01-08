@@ -16,6 +16,7 @@
 						<div class="input-group col-sm-4x" style="float:left">
 							<input type="search" class="form-control" id="deptName"
 								name="deptName" placeholder="Dept">
+								<input type="hidden"  id="pid" name="uDeptId" /> 
 						</div>
 						<span class="input-group-btn">
 							<button class="am-btn am-btn-default" id="menuBtn" type="button">
@@ -112,7 +113,7 @@
 				uName:{
 					required : true,
 				},
-				role : {
+				roleId : {
 					required : true
 				},
 				uDescription : {
@@ -140,7 +141,7 @@
 				uName:{
 					required:"请输入姓名"
 				},
-				role : {
+				roleId : {
 					required : "请选择角色信息"
 				},
 				uDescription : {

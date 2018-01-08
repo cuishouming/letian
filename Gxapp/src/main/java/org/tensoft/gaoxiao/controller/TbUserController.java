@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.tensoft.gaoxiao.model.TbRole;
 import org.tensoft.gaoxiao.model.TbUser;
+import org.tensoft.gaoxiao.service.TbDeptService;
 import org.tensoft.gaoxiao.service.TbRoleService;
 import org.tensoft.gaoxiao.service.TbUserService;
 import org.tensoft.gaoxiao.utils.EndecryptUtils;
@@ -38,6 +37,9 @@ public class TbUserController  extends BaseController{
 	
 	@Autowired
 	TbRoleService tbRoleService;
+	
+	@Autowired
+	TbDeptService tbDeptService;
 	/**
 	 * 获取所有的 用户信息
 	 * @param searchModel 前台传过来的一些查询参数
@@ -131,5 +133,34 @@ public class TbUserController  extends BaseController{
 			return "/user/rest";
 			
 		}
+		/**
+		 * 重置密码保存的操作
+		 * @param map
+		 * @param tbUser
+		 * @return
+		 */
+		@PostMapping("/restPassword")
+		@ResponseBody
+		public AjaxResult restPassword(Map<String, Object> map,TbUser tbUser){
+			TbUser user = tbUserService.get(tbUser.getuId());
+			//密码加密
+			TbUser userFlag = EndecryptUtils.md5Password(tbUser.getuAccountName(), tbUser.getuPassword(), 2);
+			user.setuPassword(userFlag.getuPassword());
+			user.setuCredentialsSalt(userFlag.getuCredentialsSalt());
+			user.setuUpdateTime(new Date(System.currentTimeMillis()));
+			if( tbUserService.update(user)<0){
+				return fail();
+			}
+			return success();
+		}
 		
+		
+		@GetMapping("{uId}/toEdit")
+	    public String select(Map<String,Object> map,@PathVariable(required=true) Integer uId) {	
+			TbUser user = tbUserService.get(uId);
+			user.setDept(tbDeptService.get(user.getuDeptId()));
+			map.put("user", user);
+		//	makeCommon(map);
+			return "user/edit";
+	    }	
 }

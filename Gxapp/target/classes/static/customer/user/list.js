@@ -66,6 +66,7 @@ function tableColumns(){
 	    valign: 'middle'}
 	]]
  }
+//点击重置密码
 function resetPassword(){
 	//获取选中的数据
 	var seledatas= $table.bootstrapTable('getSelections');  
@@ -77,4 +78,15 @@ function resetPassword(){
 	        });
 	}
 	
+}
+
+function btnEdit(){
+	var seledatas= $table.bootstrapTable('getSelections');  
+	if(seledatas.length==1){
+		   loadPage('user/'+seledatas[0].uId+'/toEdit');
+	}else{
+		 layer.msg("你没有选择行或选择了多行数据", {
+	            icon : 0
+	        });
+	}
 }

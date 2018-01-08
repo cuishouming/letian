@@ -17,74 +17,85 @@ public class TbDept implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3125781562323348104L;
-	private Integer id;
-	private Integer pid;
-	private String pids;
-	
-	private String name;
-	private String fullname;
-	private String tips;
-	
-	private String pname;
-	
+	 private Integer id;
 
+	    private Integer pid;
 
-	public Integer getId() {
-		return id;
-	}
+	    private String pids;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Integer getPid() {
-		return pid;
-	}
+	    private String simplename;
+	    private String name;
 
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
+	    private String fullname;
 
-	public String getName() {
-		return name;
-	}
+	    private String tips;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	    private Integer version;
 
-	public String getFullname() {
-		return fullname;
-	}
+	    public Integer getId() {
+	        return id;
+	    }
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
+	    public String getName() {
+			return name;
+		}
 
-	public String getTips() {
-		return tips;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
 
-	public void setTips(String tips) {
-		this.tips = tips;
-	}
+		public void setId(Integer id) {
+	        this.id = id;
+	    }
 
-	
+	    public Integer getPid() {
+	        return pid;
+	    }
 
-	public String getPids() {
-		return pids;
-	}
+	    public void setPid(Integer pid) {
+	        this.pid = pid;
+	    }
 
-	public void setPids(String pids) {
-		this.pids = pids;
-	}
-	
-	public String getPname() {
-		return pname;
-	}
+	    public String getPids() {
+	        return pids;
+	    }
 
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
+	    public void setPids(String pids) {
+	        this.pids = pids == null ? null : pids.trim();
+	    }
+
+	    public String getSimplename() {
+	        return simplename;
+	    }
+
+	    public void setSimplename(String simplename) {
+	        this.simplename = simplename == null ? null : simplename.trim();
+	    }
+
+	    public String getFullname() {
+	        return fullname;
+	    }
+
+	    public void setFullname(String fullname) {
+	        this.fullname = fullname == null ? null : fullname.trim();
+	    }
+
+	    public String getTips() {
+	        return tips;
+	    }
+
+	    public void setTips(String tips) {
+	        this.tips = tips == null ? null : tips.trim();
+	    }
+
+	    public Integer getVersion() {
+	        return version;
+	    }
+
+	    public void setVersion(Integer version) {
+	        this.version = version;
+	    }
+
 
 	
 

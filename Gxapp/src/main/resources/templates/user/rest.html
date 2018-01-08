@@ -1,0 +1,104 @@
+<div class="row-content am-cf">
+	<div class="row">
+		<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+			<div class="widget am-cf">
+				<div class="widget-head am-cf">
+					<div class="widget-title am-fl">重置密码</div>
+					<div class="widget-function am-fr">
+						<a href="javascript:;" class="am-icon-cog"></a>
+					</div>
+				</div>
+				<div class="widget-body am-fr">
+					<form class="am-form tpl-form-line-form" id="userForm" method="post">
+						<input type="hidden"  name="uId" th:value="${user.uId}" required="required"/> 
+						<div class="am-form-group">
+							<label for="uAccountName" class="am-u-sm-2 am-form-label">账号
+								<span class="tpl-form-line-small-title">Account</span>
+							</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="uAccountName" class="tpl-form-input" placeholder="请输入账号" name="uAccountName" th:value="${user.uAccountName}"  readonly="readonly"/> 
+							</div>
+						</div>	
+						<div class="am-form-group">
+							<label for="uName" class="am-u-sm-2 am-form-label">姓名
+								<span class="tpl-form-line-small-title">uName</span>
+							</label>
+							<div class="am-u-sm-10">
+								<input type="text" id="uName" class="tpl-form-input" placeholder="请输入姓名" name="uName" th:value="${user.uName}" readonly="readonly"/>
+							</div>
+						</div>
+						<div class="am-form-group">
+							<label for="uPassword" class="am-u-sm-2 am-form-label">密码
+								<span class="tpl-form-line-small-title">Password</span>
+							</label>
+							<div class="am-u-sm-10">
+								<input type="password" id="uPassword" class="tpl-form-input" placeholder="请输入密码" name="uPassword"  required="required"/> 
+							</div>
+						</div>
+						
+						<div class="am-form-group">
+							<label for="repassword" class="am-u-sm-2 am-form-label">确认密码
+								<span class="tpl-form-line-small-title">RePassword</span>
+							</label>
+							<div class="am-u-sm-10">
+								<input type="password" id="repassword" class="tpl-form-input" placeholder="请再次输入密码" name="repassword"  required="required"  minlength="6"/> 
+							</div>
+						</div>
+
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-push-2">
+								
+								<button type="button" onclick="javascript:$('#userForm').submit();"
+									class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+										<button type="button" onclick="loadPage('adx/user/list')"
+									class="am-btn am-btn-success tpl-btn-bg-color-success ">返回</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	<script th:inline="javascript">
+	<![CDATA[
+//	$('select').selected();
+	validateUserForm();
+	function validateUserForm(){    
+	    $('#userForm').validate({
+	        errorElement : 'span',/* 类型 String，默认 "label"。指定使用什么标签标记错误。 */
+	        errorClass : 'am-icon-times',
+	        focusInvalid : true, //类型 Boolean，默认 true。提交表单后，未通过验证的表单（第一个或提交之前获得焦点的未通过验证的表单）会获得焦点。
+	        onkeyup:false, //类型 Boolean，默认 true，指定是否在敲击键盘时验证。
+	        ignore : "", //对某些元素不进行验证。
+	        rules : {
+	        	uPassword : {
+		                required : true,
+		                minlength : 6
+	            },
+	            repassword : {
+	                required : true,
+	                minlength : 6,
+	                equalTo : "#uPassword"//
+	            },
+
+	        },
+	        messages : {
+	        	uPassword : {
+		                required : "请填写密码",
+		                minlength : "密码长度不能少于6个字符"
+	            },
+	            repassword : {
+	                required : "请再次填写密码",
+	                minlength : "密码长度不能少于6个字符",
+	                equalTo : "两次填写密码不一致，请重新填写"
+	            },
+	        },
+	        submitHandler : function(form) {//通过验证后运行的函数，里面要加上表单提交的函数，否则表单不会提交。
+	        	commit('userForm', 'user/restPassword', 'adx/user/list');
+	        }
+	    });
+	}
+		]]>
+	</script>
