@@ -2,14 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.tensoft.gaoxiao.dao.TbRoleMapper">
 
+	<resultMap id="BaseResultMap" type="org.tensoft.gaoxiao.model.TbRole">
+		<id column="r_id" property="rId" jdbcType="INTEGER" />
+		<result column="r_name" property="rName" jdbcType="VARCHAR" />
+		<result column="r_key" property="rKey" jdbcType="VARCHAR" />
+		<result column="r_status" property="rStatus" jdbcType="INTEGER" />
+		<result column="r_description" property="rDescription"
+			jdbcType="VARCHAR" />
+		<result column="r_create_time" property="rCreateTime" jdbcType="TIMESTAMP" />
+		<result column="r_update_time" property="rUpdateTime" jdbcType="TIMESTAMP" />
+		<result column="r_dept_id" property="rDeptId" jdbcType="INTEGER" />
+	</resultMap>
 	<sql id="Base_Column_List">
-		r_id,r_name,r_key,r_status,r_description,r_dept_id,r_update_time
+		r_id, r_name, r_key, r_status, r_description, r_create_time, r_update_time,
+		r_dept_id
 	</sql>
-	<select id="getAll" resultType="org.tensoft.gaoxiao.model.TbRole">
+	<select id="getAll" resultMap="BaseResultMap">
 		select
-		r_id as id,r_name as  rolename,r_key as rolekey,r_status as rolestatus,r_description as 
-		description,r_dept_id as deptId,r_update_time as updateTime
+		<include refid="Base_Column_List" />
 		from tb_role
-		where r_status= 0 order by updateTime desc
+		where r_status= 0 order by r_update_time desc
 	</select>
 </mapper>

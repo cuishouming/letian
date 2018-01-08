@@ -53,7 +53,7 @@ function tableColumns(){
 	    align: 'center',
 	    valign: 'middle'
 	},{
-		field : 'role.rolename',
+		field : 'role.rName',
 	    title : '角色',
 	    width: "200px",
 	    align: 'center',

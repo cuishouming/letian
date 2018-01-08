@@ -1,86 +1,45 @@
 package org.tensoft.gaoxiao.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
+public class TbRoleUser {
+    private Integer id;
 
+    private Integer rId;
 
-/**
- * <p>
- * 用户角色映射表
- * </p>
- *
- * @author xj
- * @since 2016-12-26
- */
-public class TbRoleUser implements Serializable{
+    private Integer uId;
 
+    private Date tCreateTime;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1891160906293038917L;
-	/**
-	 * 
-	 */
-	private Integer id;
-	/**
-	 * 角色id
-	 */
-	private Integer rId;
-	/**
-	 * 用户id
-	 */
-	private Integer uId;
-	/**
-	 * 创建时间
-	 */
-	private Date tCreateTime;
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getrId() {
+        return rId;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setrId(Integer rId) {
+        this.rId = rId;
+    }
 
-	public Integer getRId() {
-		return rId;
-	}
+    public Integer getuId() {
+        return uId;
+    }
 
-	public void setRId(Integer rId) {
-		this.rId = rId;
-	}
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
 
-	public Integer getUId() {
-		return uId;
-	}
+    public Date gettCreateTime() {
+        return tCreateTime;
+    }
 
-	public void setUId(Integer uId) {
-		this.uId = uId;
-	}
-
-	public Date getTCreateTime() {
-		return tCreateTime;
-	}
-
-	public void setTCreateTime(Date tCreateTime) {
-		this.tCreateTime = tCreateTime;
-	}
-
-	
-	public TbRoleUser(Integer uId) {
-		super();
-		this.uId = uId;
-	}
-
-	
-	public TbRoleUser() {
-		super();
-	}
-
-	
-
+    public void settCreateTime(Date tCreateTime) {
+        this.tCreateTime = tCreateTime;
+    }
 }

@@ -117,7 +117,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 	    	   //根据用户信息 获取他的权限
 	    	   List<TbResource> resourceList = resourceService.findResourcesByUserId(user.getuId());
 	    	   SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-	    	   info.addRole(user.getRole().getRolename());
+	    	   info.addRole(user.getRole().getrName());
 	    	   for (TbResource resourceEntity : resourceList) {
 					info.addStringPermission(resourceEntity.getSourceKey());
 				}

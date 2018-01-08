@@ -61,8 +61,8 @@
 					<label for="roleId" class="col-sm-2 control-label">所属角色 Role</label>
 					<div class="col-sm-8">
 						<select id="roleId" class="form-control" name="roleId">
-							<option th:each="role : ${roles}" th:value="${role.id}"
-								th:text="${role.rolename}"></option>
+							<option th:each="role : ${roles}" th:value="${role.rId}"
+								th:text="${role.rName}"></option>
 						</select>
 					</div>
 				</div>

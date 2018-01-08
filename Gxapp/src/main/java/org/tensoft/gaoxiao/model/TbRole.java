@@ -1,125 +1,29 @@
 package org.tensoft.gaoxiao.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
+public class TbRole {
+    private Integer rId;
 
+    private String rName;
 
-/**
- * <p>
- * 角色表
- * </p>
- *
- * @author xj
- * @since 2016-12-20
- */
-public class TbRole implements Serializable{
+    private String rKey;
 
+    private Integer rStatus;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3215918970906321965L;
-	/**
-	 * 角色id
-	 */
-	private Integer id;
-	/**
-	 * 角色名称
-	 */
-	private String rolename;
-	/**
-	 * 角色key
-	 */
-	private String rolekey;
-	/**
-	 * 角色状态,0：正常；1：删除
-	 */
-	private Integer rolestatus;
-	/**
-	 * 角色描述
-	 */
-	private String description;
-	/**
-	 * 创建时间
-	 */
-	private Date createTime;
-	/**
-	 * 更新时间
-	 */
-	private Date updateTime;
-	
-	private Integer deptId;
-	
-	private String deptName;
-	
-	private TbDept dept;
+    private String rDescription;
 
-	private List<TbUser> userList;
-	
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private Date rCreateTime;
 
+    private Date rUpdateTime;
 
-	public String getRolename() {
-		return rolename;
-	}
+    private Integer rDeptId;
+    
+    private List<TbUser> userList;
 
-	public void setRolename(String rolename) {
-		this.rolename = rolename;
-	}
-
-
-	public String getRolekey() {
-		return rolekey;
-	}
-
-	public void setRolekey(String rolekey) {
-		this.rolekey = rolekey;
-	}
-
-	
-
-	public Integer getRolestatus() {
-		return rolestatus;
-	}
-
-	public void setRolestatus(Integer rolestatus) {
-		this.rolestatus = rolestatus;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	public List<TbUser> getUserList() {
+    public List<TbUser> getUserList() {
 		return userList;
 	}
 
@@ -127,29 +31,67 @@ public class TbRole implements Serializable{
 		this.userList = userList;
 	}
 
-	public Integer getDeptId() {
-		return deptId;
-	}
+	public Integer getrId() {
+        return rId;
+    }
 
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
-	}
-	public String getDeptName() {
-		return deptName;
-	}
+    public void setrId(Integer rId) {
+        this.rId = rId;
+    }
 
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
-	}
-	
-	public TbDept getDept() {
-		return dept;
-	}
+    public String getrName() {
+        return rName;
+    }
 
-	public void setDept(TbDept dept) {
-		this.dept = dept;
-	}
+    public void setrName(String rName) {
+        this.rName = rName == null ? null : rName.trim();
+    }
 
-	
+    public String getrKey() {
+        return rKey;
+    }
 
+    public void setrKey(String rKey) {
+        this.rKey = rKey == null ? null : rKey.trim();
+    }
+
+    public Integer getrStatus() {
+        return rStatus;
+    }
+
+    public void setrStatus(Integer rStatus) {
+        this.rStatus = rStatus;
+    }
+
+    public String getrDescription() {
+        return rDescription;
+    }
+
+    public void setrDescription(String rDescription) {
+        this.rDescription = rDescription == null ? null : rDescription.trim();
+    }
+
+    public Date getrCreateTime() {
+        return rCreateTime;
+    }
+
+    public void setrCreateTime(Date rCreateTime) {
+        this.rCreateTime = rCreateTime;
+    }
+
+    public Date getrUpdateTime() {
+        return rUpdateTime;
+    }
+
+    public void setrUpdateTime(Date rUpdateTime) {
+        this.rUpdateTime = rUpdateTime;
+    }
+
+    public Integer getrDeptId() {
+        return rDeptId;
+    }
+
+    public void setrDeptId(Integer rDeptId) {
+        this.rDeptId = rDeptId;
+    }
 }

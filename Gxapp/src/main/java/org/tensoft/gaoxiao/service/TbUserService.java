@@ -28,9 +28,9 @@ public class TbUserService extends BaseService<TbUserMapper, TbUser>{
 	public boolean instertAll(TbUser user) {
 		if (dao.add(user)>0) {
 			TbRoleUser roleUser = new TbRoleUser();
-			roleUser.setRId(user.getRoleId());
-			roleUser.setUId(user.getuId());
-			roleUser.setTCreateTime(new Date(System.currentTimeMillis()));
+			roleUser.setrId(user.getRoleId());
+			roleUser.setuId(user.getuId());
+			roleUser.settCreateTime(new Date(System.currentTimeMillis()));
 			if(roleUserMapper.add(roleUser)>0){
 				return true;
 			}

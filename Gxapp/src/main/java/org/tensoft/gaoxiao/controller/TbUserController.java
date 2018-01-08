@@ -53,7 +53,7 @@ public class TbUserController  extends BaseController{
 			 Page<Object> pages = PageHelper.startPage(searchModel.getLimit(),searchModel.getOffset());
  			 Map<String, Object> map = new HashMap<String, Object>();
 			 if(StringUtil.isNotEmpty(searchModel.getS_name())){
-				 map.put("uAccountName", searchModel.getS_name());
+				 map.put("name", searchModel.getS_name());
 			 }
 			 List<TbUser> list =  tbUserService.selectUser(map);
 			 result.setTotal(pages.getTotal());

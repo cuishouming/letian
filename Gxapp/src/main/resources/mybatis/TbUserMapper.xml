@@ -15,17 +15,17 @@
 		<result column="u_create_time" property="uCreateTime" />
 		<result column="u_update_time" property="uUpdateTime" />
 		<result column="u_dept_id" property="uDeptId" />
-		<result column="deptName" property="uImg" />
 		<result column="u_img" property="uImg" />
-		<association property="role" column="id"
+		<result column="deptName" property="deptName" />
+		<association property="role" column="rId"
 			javaType="org.tensoft.gaoxiao.model.TbRole">
-			<id property="id" column="r_id" />
-			<result property="rolename" column="r_name" />
-			<result property="rolekey" column="r_key" />
-			<result property="rolestatus" column="r_status" />
-			<result property="description" column="r_description" />
-			<result property="createTime" column="r_create_time" />
-			<result property="updateTime" column="r_update_time" />
+			<id property="rId" column="r_id" />
+			<result property="rName" column="r_name" />
+			<result property="rKey" column="r_key" />
+			<result property="rStatus" column="r_status" />
+			<result property="rDescription" column="r_description" />
+			<result property="rCreateTime" column="r_create_time" />
+			<result property="rUpdateTime" column="r_update_time" />
 		</association>
 	</resultMap>
 
@@ -66,15 +66,17 @@
 		r.r_description,
 		r.r_create_time,
 		r.r_update_time,
-		u.u_img
+		u.u_img,
+		b.simplename as deptName
 		FROM tb_user u LEFT JOIN tb_role_user ru ON
 		u.u_id = ru.u_id LEFT JOIN tb_role r ON ru.r_id = r.r_id
+		LEFT JOIN tb_dept b on u.u_dept_id = b.id
 		<where>
 			<if test="uId != null and uId != ''">
 				u.u_id=#{uId}
 			</if>
-			<if test="uAccountName != null and uAccountName != ''">
-				u.u_account_name=#{uAccountName}
+			<if test="name != null and name != ''">
+				 and u.u_name LIKE CONCAT('%',#{name},'%' ) OR u.u_account_name LIKE CONCAT('%',#{name},'%' )
 			</if>
 		</where>
 	</select>
