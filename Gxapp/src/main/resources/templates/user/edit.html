@@ -17,9 +17,9 @@
 								 <div class="am-input-group">
 							     <input type="text"  class="am-form-field" placeholder="请选择部门" id="deptName" name="deptName" readonly="readonly" th:value="${user.dept.simplename}"/> 
 							     <span class="input-group-btn">
-							<button class="am-btn am-btn-default" id="menuBtn" type="button">
+							<!-- <button class="am-btn am-btn-default" id="menuBtn" type="button">
 								<span class="am-icon-search"></span>
-							</button>
+							</button> -->
 						</span>
 							    </div>
 								<input type="hidden"  id="pid" name="uDeptId" th:value="${user.uDeptId}"/> 
@@ -47,11 +47,11 @@
 								<span class="tpl-form-line-small-title">Role</span>
 							</label>
 							<div class="am-u-sm-10">
-								<select id="role" data-am-selected="{searchBox: 1}"  style="display: none;" name="role.id">
+								<select id="role"   data-am-selected="{searchBox: 1}" name="role.rId">
 									<option th:each="role : ${roles}" 
-									     th:value="${role.id}" 
-									     th:text="${role.name}"
-									     th:selected="${role.id==user.role.id}"
+									     th:value="${role.rId}" 
+									     th:text="${role.rName}"
+									     th:selected="${role.rId==user.role.rId}"
 									     ></option>
 								</select>
 							
@@ -71,7 +71,7 @@
 								
 								<button type="button" onclick="javascript:$('#userForm').submit();"
 									class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
-										<button type="button" onclick="loadPage('user/listUI')"
+										<button type="button" onclick="loadPage('adx/user/list')"
 									class="am-btn am-btn-success tpl-btn-bg-color-success ">返回</button>
 							</div>
 						</div>
@@ -84,9 +84,8 @@
 	</div>
 	<script th:inline="javascript">
 	<![CDATA[
-	
 	validateUserForm();
-	openDeptTree();
+	//openDeptTree();
 	function validateUserForm(){    
 	    $('#userForm').validate({
 	        errorElement : 'span',
@@ -101,7 +100,7 @@
 	            name : {
 	                required : true
 	            },
-	            "role.id" : {
+	            "role.u	Id" : {
 	                required : true
 	            }
 	        },
@@ -110,10 +109,10 @@
 	                required : "请填写账号"
 	            },
 	            userName : "请填写真实姓名",
-	            "role.id" : "请选择角色"
+	            "role.u	Id" : "请选择角色"
 	        },
 	        submitHandler : function(form) {
-	        	commit('userForm', 'user/save', 'user/listUI');
+	        	commit('userForm', 'user/saveOrupdate', 'adx/user/list');
 	        }
 	    });
 	}

@@ -41,11 +41,22 @@
 		u.u_creator_name,
 		u.u_create_time,
 		u.u_update_time,
-		u.u_dept_id
-		FROM tb_user u 
+		u.u_dept_id  ,r.r_id,
+		r.r_name,
+		r.r_key,
+		r.r_status,
+		r.r_description,
+		r.r_create_time,
+		r.r_update_time,
+		u.u_img
+		FROM tb_user u LEFT JOIN tb_role_user ru ON
+		u.u_id = ru.u_id LEFT JOIN tb_role r ON ru.r_id = r.r_id
 		where u.u_id=#{uId}
 </select>
-
+ <delete id="delete" parameterType="java.lang.Integer" >
+    delete from tb_user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </delete>
 	<select id="selectUser" resultMap="BaseResultMap" parameterType="map">
 		SELECT u.u_id,
 		u.u_name,

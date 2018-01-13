@@ -194,7 +194,7 @@ function del(nav,callback){
             url :  nav,
             dataType : "json",
             success : function(resultdata) {
-                if (resultdata.status=="0") {
+                if (resultdata.statusCode=="200") {
                     layer.msg(resultdata.message, {
                         icon : 1
                     });

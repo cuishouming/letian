@@ -1,7 +1,8 @@
  var $table = $("#table1");
 $(function () {
         $("#btn").on('click', function () {
-            $table.bootstrapTable("refresh")
+           // $table.bootstrapTable("refresh")
+        	resh();
         });
         var $table = $("#table1");
         $table.bootstrapTable({
@@ -33,7 +34,9 @@ $(function () {
         console.log(params);
         return params;
     }
-
+function resh(){
+	$table.bootstrapTable("refresh");
+}
 function tableColumns(){
         return [[{
             checkbox: true,
@@ -79,7 +82,7 @@ function resetPassword(){
 	}
 	
 }
-
+//点击编辑的操作
 function btnEdit(){
 	var seledatas= $table.bootstrapTable('getSelections');  
 	if(seledatas.length==1){
@@ -89,4 +92,15 @@ function btnEdit(){
 	            icon : 0
 	        });
 	}
+}
+//点击删除的操作
+function btnDel(){
+	var seledatas= $table.bootstrapTable('getSelections'); 
+	if (seledatas.length == 1) {
+	 	   del('user/'+seledatas[0].uId+'/delete',resh);
+	    }else{
+	 	   layer.msg("你没有选择行或选择了多行数据", {
+	            icon : 0
+	        });
+	    }
 }

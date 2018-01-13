@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -115,7 +116,8 @@ public class TbUserController  extends BaseController{
 					return fail();
 				}
 			} else {
-					//xiugaishuju
+					//编辑用户的操作
+				tbUserService.updateAll(user);
 			}
 			return success();
 			
@@ -156,11 +158,25 @@ public class TbUserController  extends BaseController{
 		
 		
 		@GetMapping("{uId}/toEdit")
-	    public String select(Map<String,Object> map,@PathVariable(required=true) Integer uId) {	
+	    public String select(Map<String,Object> map,@PathVariable(required=true) Integer uId) {
 			TbUser user = tbUserService.get(uId);
 			user.setDept(tbDeptService.get(user.getuDeptId()));
 			map.put("user", user);
-		//	makeCommon(map);
+			makeCommon(map);
 			return "user/edit";
 	    }	
+		@DeleteMapping("{uId}/delete")
+		@ResponseBody
+		public AjaxResult doDel(@PathVariable(required=true) Integer uId){
+			if(!tbUserService.delUser(uId)){
+				return fail();
+			}
+			return success();
+			
+		}
+		
+		
+		private void makeCommon(Map<String,Object> map){
+			map.put("roles", tbRoleService.selectRoleList(getUserEntity().getuDeptId()));
+		}
 }

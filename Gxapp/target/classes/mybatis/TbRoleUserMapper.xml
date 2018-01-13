@@ -8,5 +8,33 @@
 		values(#{rId,jdbcType=INTEGER},#{uId,jdbcType=INTEGER},#{tCreateTime ,jdbcType=TIMESTAMP})
 
 	</insert>
+ <delete id="deleteByMap" parameterType="map" >
+    delete from tb_role_user
+    where 1=1  
+      <if test="rId != null" >
+       and  r_id = #{rId,jdbcType=INTEGER}
+      </if>
+      <if test="uId != null" >
+       and  u_id = #{uId,jdbcType=INTEGER}
+      </if>
+    <if test="id != null" >
+       and  id = #{id,jdbcType=INTEGER}
+      </if>
+  </delete>
 
+<update id="update" parameterType="org.tensoft.gaoxiao.model.TbRoleUser" >
+    update tb_role_user
+    <set >
+      <if test="rId != null" >
+        r_id = #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
 </mapper>
