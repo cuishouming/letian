@@ -3,6 +3,8 @@ package org.tensoft.gaoxiao.vo;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 
@@ -22,6 +24,7 @@ import java.util.Map;
  * @author Administrator
  *
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pager {
 	
 	/**
@@ -64,15 +67,7 @@ public class Pager {
 	 */
 	private Map<String, Object> fastQueryParameters;
 	
-	/**
-	 * 高级查询列表
-	 */
-//	private List<Condition> advanceQueryConditions;
 	
-	/**
-	 * 高级排序列表
-	 */
-//	private List<Sort> advanceQuerySorts;
 	
 	/**
 	 * 显示数据集
@@ -94,10 +89,7 @@ public class Pager {
 	 */
 	private String exportFileName;
 	
-	/**
-	 * 导出列
-	 */
-//	private List<Column> exportColumns;
+	
 	
 	/**
 	 * 全部数据导出
@@ -212,7 +204,7 @@ public class Pager {
 		this.exportFileName = exportFileName;
 	}
 
-
+	
 
 	public boolean getExportAllData() {
 		return exportAllData;
