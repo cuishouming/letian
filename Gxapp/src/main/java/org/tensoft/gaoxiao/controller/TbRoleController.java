@@ -10,39 +10,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.tensoft.gaoxiao.model.TbRole;
 import org.tensoft.gaoxiao.service.TbRoleService;
-import org.tensoft.gaoxiao.utils.JsonUtil;
 import org.tensoft.gaoxiao.vo.BootstrapTableResult;
-import org.tensoft.gaoxiao.vo.Pager;
+import org.tensoft.gaoxiao.vo.SearchModel;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
 @Controller
 @RequestMapping("/role/")
-public class TbRoleController {
+public class TbRoleController extends BaseController {
 
 	@Autowired
 	TbRoleService tbRoleService;
-	
+	/**
+	 * 查询角色信息 如何查登陆用户所在部门的角色信息呢
+	 * @param gridPager
+	 * @return
+	 */
 	@RequestMapping("list")
 	@ResponseBody
-	public BootstrapTableResult<TbRole> getall(String gridPager){
+	public BootstrapTableResult<TbRole> getall(SearchModel searchModel){
 		BootstrapTableResult <TbRole> result = new BootstrapTableResult<>();
 		try {
-			Pager pager = JsonUtil.getObjectFromJson(gridPager, Pager.class);
-			Map<String, Object> parameters =null;
-			if (pager.getParameters()==null) {
-				parameters = new HashMap<>();
-			}else {
-				parameters = pager.getParameters();
-			}
-			if (parameters.get("parentId")==null) {
-				parameters.put("s_parent_id", 0);
-			}else{
-				parameters.put("s_parent_id", parameters.get("parentId"));
-			}
-			Page<Object> pagelist = PageHelper.startPage(pager.getNowPage(), pager.getPageSize(), true);
-		List<TbRole>list = 	tbRoleService.getlist(parameters);
+			 Page<Object> pages = PageHelper.startPage(searchModel.getLimit(),searchModel.getOffset(),true);
+			Map<String, Object> parameters =new HashMap<>();;
+			//获取登陆用户所在的企业id
+			Integer deptId = getUserEntity().getuDeptId();
+			parameters.put("deptId", deptId);
+		   List<TbRole>list = 	tbRoleService.getlist(parameters);
+		   result.setRows(list);
+		   result.setTotal(pages.getTotal());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

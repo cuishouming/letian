@@ -41,7 +41,7 @@
 				tb_role a
 			LEFT JOIN tb_dept b ON b.id = a.r_dept_id 
 		<where>
-		  and a.r_dept_id in(select id from tb_dept where pids like '%${_parameter},%' or id=#{_parameter})
+		  and a.r_dept_id in(select id from tb_dept where pids like '%${deptId},%' or id=#{deptId})
 		</where>
 	</select>
 </mapper>

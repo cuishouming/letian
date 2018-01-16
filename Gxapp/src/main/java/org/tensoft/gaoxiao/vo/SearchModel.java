@@ -24,7 +24,13 @@ public class SearchModel {
     private int page;
     
 
-
+    public int getPageNum() {
+        if (offset > 0) {
+            return (this.offset / this.getLimit())+1;
+        }
+        return 1;
+    }
+    
     public String getS_name() {
 		return s_name;
 	}
